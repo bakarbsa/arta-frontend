@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "@heroicons/vue": "^1.0.5",
+    "@tailwindcss/line-clamp": "^0.2.2",
     "core-js": "^3.6.5",
     "stylelint-config-recommended": "^6.0.0",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vueperslides": "^3.3.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.2.17",

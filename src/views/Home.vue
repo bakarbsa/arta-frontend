@@ -74,7 +74,7 @@
     </div>
 
     <!-- PRODUCT SECTION -->
-    <div class="flex flex-col justify-center items-center my-10">
+    <div class="flex flex-col justify-center items-center my-16">
       <Header class="center" title="Our Products" subtitle="WHAT WE’RE DOING"/>
       <div class="grid grid-cols-1 mt-7 gap-5">
         <div v-for="asset in productAssets" :key="[asset.bgSrc, asset.logoImgSrc, asset.logoTextSrc]">
@@ -86,7 +86,7 @@
     <!-- Banner 2 -->
     <div class="relative bg-green h-24 flex justify-center">
       <img class="h-full opacity-60 w-full object-cover" src="../assets/images/home-banner2.jpg" alt="Arta Banner">
-      <div class="absolute h-full w-full bg-gradient-to-b from-green to-transparent flex justify-center items-center">
+      <div class="absolute h-full w-full bg-gradient-to-b from-green to-transparent  flex justify-center items-center">
         <div class="flex flex-row items-center mx-10">
           <!-- Logo Arta -->
           <img class="w-10 mr-5" src="../assets/images/logo-white.png" alt="Arta Logo">
@@ -95,21 +95,71 @@
         </div>
       </div>
     </div>
+
+    <!-- NEWS & ARTICLE SECTION -->
+    <div class="my-16 flex flex-col justify-center items-center">
+      <Header class="center" title="News & Article" subtitle="WHAT’S GOING ON?"/>
+      <div class="mt-5 w-5/6">
+        <vueper-slides
+          class="no-shadow"
+          fixed-height="18.3rem"
+          :visible-slides="3"
+          slide-multiple
+          :gap="3"
+          :dragging-distance="70"
+          :breakpoints="breakpoints"
+        >
+          <vueper-slide v-for="(asset, i) in newsAssets" :key="i">
+            <template #content>
+              <NewsCard 
+                :src="asset.src"
+                :createdAt="asset.createdAt"
+                :author="asset.author"
+                :views="asset.views"
+                :title="asset.title"
+              />
+            </template>
+          </vueper-slide>
+        </vueper-slides>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { VueperSlides, VueperSlide } from 'vueperslides'
+import 'vueperslides/dist/vueperslides.css'
 import Navbar from '@/components/Navbar'
 import DefaultButton from '@/components/DefaultButton'
 import Header from '@/components/Header'
 import AboutCard from '@/components/home/AboutCard'
 import ProductCard from '@/components/home/ProductCard'
+import NewsCard from '@/components/home/NewsCard'
 
 export default {
   name: 'Home',
-  components: { Navbar, DefaultButton, Header, AboutCard, ProductCard },
+  components: { 
+    VueperSlides, 
+    VueperSlide,
+    Navbar, 
+    DefaultButton, 
+    Header, 
+    AboutCard, 
+    ProductCard,
+    NewsCard 
+  },
   data() {
     return {
+      // Breakpoints for Vueper Slides
+      breakpoints: {
+        950: {
+          visibleSlides: 2
+        },
+        600: {
+          visibleSlides: 1,
+          bulletsOutside: true
+        }
+      },
       // Array for quality card images
       qualityAssets: [
         {
@@ -125,6 +175,7 @@ export default {
           title: 'Customer Friendly'
         }
       ],
+      // Products of Arta (Artamart)
       productAssets: [
         {
           bgSrc: require('../assets/images/bg-artamart.jpg'),
@@ -132,6 +183,36 @@ export default {
           logoTextSrc: require('../assets/images/logo-artamart-text.png'),
           content: 'Menjual berbagai sayur dan lauk pilihan dengan harga terjangkau dan produk berkualitas'
         }
+      ],
+      newsAssets: [
+        {
+          src: 'https://picsum.photos/600/400.jpg',
+          title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus',
+          createdAt: '30 Agustus 2021',
+          author: 'Rizal Iskan',
+          views: 1403
+        },
+        {
+          src: 'https://picsum.photos/600/400.jpg',
+          title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus',
+          createdAt: '30 Agustus 2021',
+          author: 'Rizal Iskan',
+          views: 1403
+        },
+        {
+          src: 'https://picsum.photos/600/400.jpg',
+          title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus',
+          createdAt: '30 Agustus 2021',
+          author: 'Rizal Iskan',
+          views: 1403
+        },
+        {
+          src: 'https://picsum.photos/600/400.jpg',
+          title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus',
+          createdAt: '30 Agustus 2021',
+          author: 'Rizal Iskan',
+          views: 1403
+        },
       ]
     }
   }
@@ -156,5 +237,24 @@ export default {
   .bullet {
     background: url('../assets/images/bullet.png') no-repeat left center;
     font-size: .85em;
+  }
+
+  /* Vueper Slide */
+  .vueperslides__bullet .default {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: none;
+    box-shadow: none;
+    transition: 0.3s;
+    width: 16px;
+    height: 16px;
+  }
+
+  .vueperslides__bullet--active .default {background-color: #01BF71;}
+
+  .vueperslides__bullet span {
+    display: block;
+    color: #fff;
+    font-size: 10px;
+    opacity: 0.8;
   }
 </style>
