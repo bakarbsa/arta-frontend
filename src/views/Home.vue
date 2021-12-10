@@ -123,6 +123,34 @@
         </vueper-slides>
       </div>
     </div>
+
+    <!-- SUPPORT & NEWSLETTER -->
+    <div class="my-16 flex justify-center items-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-20">
+        <!-- Support -->
+        <div class="flex flex-col">
+          <Header title="Support Us" subtitle="HELP US TO IMPORVE QUALITY"/>
+          <!-- Form Content -->
+          <form class="w-80 mt-5" method="post">
+            <DefaultForm v-model:modelValue="fullName" label="Full Name" type='text' placeholder="Abu Bakar Bsa"/>
+            <DefaultForm v-model:modelValue="email" label="Email" type='email' placeholder="example@gmail.com"/>
+            <DefaultForm v-model:modelValue="phoneNumber" label="Phone Number" type='text' placeholder="081xxxxxxxxx"/>
+            <DefaultForm v-model:modelValue="messages" label="Messages" type='text' placeholder="Your messages"/>
+          </form>
+          <DefaultButton px='px-8'>Submit</DefaultButton>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="flex flex-col">
+          <Header title="Newsletter" subtitle="GET THE LATEST NEWS FROM US"/>
+          <!-- Form Content -->
+          <form class="w-80 mt-5" method="post">
+            <DefaultForm v-model:modelValue="emal" label="Email" type='email' placeholder="example@gmail.com"/>
+          </form>
+          <DefaultButton px='px-8'>Subscribe</DefaultButton>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -135,6 +163,7 @@ import Header from '@/components/Header'
 import AboutCard from '@/components/home/AboutCard'
 import ProductCard from '@/components/home/ProductCard'
 import NewsCard from '@/components/home/NewsCard'
+import DefaultForm from '@/components/DefaultForm'
 
 export default {
   name: 'Home',
@@ -146,7 +175,8 @@ export default {
     Header, 
     AboutCard, 
     ProductCard,
-    NewsCard 
+    NewsCard,
+    DefaultForm 
   },
   data() {
     return {
@@ -213,7 +243,12 @@ export default {
           author: 'Rizal Iskan',
           views: 1403
         },
-      ]
+      ],
+      // Form Model
+      fullName: '',
+      email: '',
+      phoneNumber: '',
+      messages: '',
     }
   }
 }

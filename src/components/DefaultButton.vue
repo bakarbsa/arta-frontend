@@ -1,7 +1,7 @@
 <template>
   <!-- PROPS 'type == blue' FOR CHANGE THE COLOR -->
   <router-link to="/">
-    <button class="rounded-sm px-3.5 py-1.5 text-sm" :class="changeColor()">
+    <button class="rounded-sm py-1.5 text-sm" :class="[changeColor(), px]">
       <!-- Replace text -->
       <slot/>
     </button>
@@ -12,7 +12,11 @@
 export default {
   name: 'Default Button',
   props: {
-    type: String
+    type: String,
+    px: {
+      type: String,
+      default: 'px-3.5'
+    }
   },
   methods: {
     // Change button color when props 'type == blue'
