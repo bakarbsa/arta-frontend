@@ -10,7 +10,7 @@
       
       <!-- Content -->
       <div class="mx-auto text-center relative text-white">
-        <h1 class="text-6xl font-bold mx-10">ARTA GROW PERSADA</h1>
+        <h1 class="text-5xl md:text-6xl font-bold mx-10">ARTA GROW PERSADA</h1>
         <p class="text-sm w-1/2 mt-2 mx-auto pb-5">Startup in agriculture that have a goal to develop agricultural potential in Indonesia</p>
         <DefaultButton>Get Started</DefaultButton>
       </div>
@@ -128,12 +128,12 @@
     <div class="my-16 flex justify-center items-center">
       <div class="grid grid-cols-1 md:grid-cols-2 md:gap-20">
         <!-- Support -->
-        <div class="flex flex-col">
+        <div class="flex flex-col mb-14 md:mb-0">
           <Header title="Support Us" subtitle="HELP US TO IMPORVE QUALITY"/>
           <!-- Form Content -->
           <form class="w-80 mt-5" method="post">
             <DefaultForm v-model:modelValue="fullName" label="Full Name" type='text' placeholder="Abu Bakar Bsa"/>
-            <DefaultForm v-model:modelValue="email" label="Email" type='email' placeholder="example@gmail.com"/>
+            <DefaultForm v-model:modelValue="emailSupport" label="Email" type='email' placeholder="example@gmail.com"/>
             <DefaultForm v-model:modelValue="phoneNumber" label="Phone Number" type='text' placeholder="081xxxxxxxxx"/>
             <DefaultForm v-model:modelValue="messages" label="Messages" type='text' placeholder="Your messages"/>
           </form>
@@ -145,12 +145,13 @@
           <Header title="Newsletter" subtitle="GET THE LATEST NEWS FROM US"/>
           <!-- Form Content -->
           <form class="w-80 mt-5" method="post">
-            <DefaultForm v-model:modelValue="emal" label="Email" type='email' placeholder="example@gmail.com"/>
+            <DefaultForm v-model:modelValue="emailNewsLetter" label="Email" type='email' placeholder="example@gmail.com"/>
           </form>
           <DefaultButton px='px-8'>Subscribe</DefaultButton>
         </div>
       </div>
     </div>
+    <Footer/>
   </div>
 </template>
 
@@ -164,6 +165,7 @@ import AboutCard from '@/components/home/AboutCard'
 import ProductCard from '@/components/home/ProductCard'
 import NewsCard from '@/components/home/NewsCard'
 import DefaultForm from '@/components/DefaultForm'
+import Footer from '@/components/Footer'
 
 export default {
   name: 'Home',
@@ -176,7 +178,8 @@ export default {
     AboutCard, 
     ProductCard,
     NewsCard,
-    DefaultForm 
+    DefaultForm,
+    Footer 
   },
   data() {
     return {
@@ -246,9 +249,10 @@ export default {
       ],
       // Form Model
       fullName: '',
-      email: '',
+      emailSupport: '',
       phoneNumber: '',
       messages: '',
+      emailNewsLetter: ''
     }
   }
 }
