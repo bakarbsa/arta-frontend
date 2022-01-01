@@ -14,9 +14,14 @@
       </div>
       <!-- BACK CARD -->
       <div class="flip-back absolute h-full w-full">
-        <div class="flex flex-col justify-center items-center h-full w-full px-5 py-2 bg-green">
+        <!-- If content is null -->
+        <div v-if="content == ''" class="flex flex-col justify-center items-center h-full w-full px-5 py-2 bg-green">
           <h1 class="text-blue-200 text-3xl mb-5">Want to Know More?</h1>
-          <DefaultButton type="blue">About Us</DefaultButton>
+          <DefaultButton to="/about" type="blue">About Us</DefaultButton>
+        </div>
+        <!-- If content not null -->
+        <div v-else class="flex flex-col justify-center items-center h-full w-full px-5 py-2 bg-green">
+          <p class="text-blue-200 font-sm font-light text-center">{{ content }}</p>
         </div>
       </div>
     </div>
@@ -33,6 +38,10 @@ export default {
     src: {
       type: String,
       required: true
+    },
+    content: {
+      typer: String,
+      default: ''
     }
   }
 }

@@ -5,7 +5,7 @@
       :class="changeBg()">
       <!-- BRAND LOGO -->
       <div class="flex items-center flex-shrink-0 text-white mr-6">
-        <router-link to="#">
+        <router-link to="/">
           <img class="h-12" :src="changeLogo()" alt="Logo Arta">
         </router-link>
       </div>
@@ -25,22 +25,22 @@
             :class="[active == 'home' ? activeText() : '', changeText()]">
             Home
           </router-link>
-          <router-link to="#" 
+          <router-link to="/about" 
             class="navbar-content navbar-content-hover" 
             :class="[active == 'about' ? activeText() : '', changeText()]">
             About
           </router-link>
-          <router-link to="#" 
+          <router-link to="/artamart" 
             class="navbar-content navbar-content-hover" 
             :class="[active == 'products' ? activeText() : '', changeText()]">
             Products
           </router-link>
-          <router-link to="#" 
+          <router-link to="/news" 
             class="navbar-content navbar-content-hover" 
             :class="[active == 'news' ? activeText() : '', changeText()]">
             News
           </router-link>
-          <router-link to="#" 
+          <router-link to="/contact" 
             class="navbar-content navbar-content-hover" 
             :class="[active == 'contact' ? activeText() : '', changeText()]">
             Contact
@@ -57,11 +57,17 @@ import { MenuIcon } from '@heroicons/vue/solid'
 export default {
   name: 'Navbar',
   components: { MenuIcon },
-  props: { active: String },
+  props: { 
+    active: String, 
+    fixedStyle: {
+      type: Boolean,
+      default: false
+    } 
+  },
   data() {
     return {
       scrollPosition: null,
-      isExpand: false
+      isExpand: false,
     }
   },
   methods: {
@@ -71,27 +77,27 @@ export default {
     },
     // Change navbar background when scrolling
     changeBg() {
-      if(this.scrollPosition <= 100 && this.isExpand == false) return 'bg-transparent transition ease-in duration-200'
+      if(this.scrollPosition <= 100 && this.isExpand == false && this.fixedStyle == false) return 'bg-transparent transition ease-in duration-200'
       else return 'bg-white transition ease-in duration-200'
     },
     // Change navbar logo when scrolling
     changeLogo() {
-      if(this.scrollPosition <= 100 && this.isExpand == false) return require('../assets/images/logo-white.png')
+      if(this.scrollPosition <= 100 && this.isExpand == false && this.fixedStyle == false) return require('../assets/images/logo-white.png')
       else return require('../assets/images/logo-black.png')
     },
     // Change navbar text when scrolling
     changeText() {
-      if(this.scrollPosition <= 100 && this.isExpand == false) return 'transition ease-in duration-200 text-white text-opacity-70 hover:text-white hover:text-opacity-100 hover:border-white'
+      if(this.scrollPosition <= 100 && this.isExpand == false && this.fixedStyle == false) return 'transition ease-in duration-200 text-white text-opacity-70 hover:text-white hover:text-opacity-100 hover:border-white'
       else return 'transition ease-in duration-200 text-black text-opacity-70 hover:text-black hover:text-opacity-100 hover:border-black'
     },
     // Change mobile menu color
     changeMenuColor() {
-      if(this.scrollPosition <= 100 && this.isExpand == false) return 'transition ease-in duration-200 text-white'
+      if(this.scrollPosition <= 100 && this.isExpand == false && this.fixedStyle == false) return 'transition ease-in duration-200 text-white'
       else return 'transition ease-in duration-200 text-black'
     },
     // Set style for active route
     activeText() {
-      if(this.scrollPosition <= 100 && this.isExpand == false) return 'transition ease-in duration-200 text-opacity-100 border-white'
+      if(this.scrollPosition <= 100 && this.isExpand == false && this.fixedStyle == false) return 'transition ease-in duration-200 text-opacity-100 border-white'
       else return 'transition ease-in duration-200 text-opacity-100 border-black'
     },
     setExpand() {

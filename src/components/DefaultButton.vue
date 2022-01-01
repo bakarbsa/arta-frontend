@@ -1,6 +1,6 @@
 <template>
   <!-- PROPS 'type == blue' FOR CHANGE THE COLOR -->
-  <router-link to="/">
+  <router-link :to="to">
     <button class="rounded-sm py-1.5 text-sm" :class="[changeColor(), px]">
       <!-- Replace text -->
       <slot/>
@@ -12,6 +12,11 @@
 export default {
   name: 'Default Button',
   props: {
+    to: {
+      type: String,
+      default: '/',
+      required: true
+    },
     type: String,
     px: {
       type: String,

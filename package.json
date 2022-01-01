@@ -10,6 +10,7 @@
   "dependencies": {
     "@heroicons/vue": "^1.0.5",
     "@tailwindcss/line-clamp": "^0.2.2",
+    "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "stylelint-config-recommended": "^6.0.0",
     "vue": "^3.0.0",

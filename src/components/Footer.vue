@@ -25,16 +25,16 @@
         <router-link to="/">
           <p class="text-white font-semibold mb-2">HOME</p>
         </router-link>
-        <router-link to="/">
+        <router-link to="/about">
           <p class="text-white font-semibold mb-2">ABOUT</p>
         </router-link>
         <p class="text-white font-semibold mb-1">PRODUCTS</p>
-        <router-link to="/">
+        <router-link to="/artamart">
           <ul class="list-disc ml-7 mb-2">
             <li class="text-white text-sm font-extralight">Artamart</li>
           </ul>
         </router-link>
-        <router-link to="/">
+        <router-link to="/news">
           <p class="text-white font-semibold mb-2">NEWS</p>
         </router-link>
       </div>

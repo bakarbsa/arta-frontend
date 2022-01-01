@@ -12,7 +12,7 @@
       <div class="mx-auto text-center relative text-white">
         <h1 class="text-5xl md:text-6xl font-bold mx-10">ARTA GROW PERSADA</h1>
         <p class="text-sm w-1/2 mt-2 mx-auto pb-5">Startup in agriculture that have a goal to develop agricultural potential in Indonesia</p>
-        <DefaultButton>Get Started</DefaultButton>
+        <DefaultButton to="/about">Get Started</DefaultButton>
       </div>
     </div>
 
@@ -69,7 +69,7 @@
       <!-- Content -->
       <div class="z-10 mx-20 flex flex-col items-center text-center md:text-left md:items-start md:mx-56">
         <h1 class="text-4xl text-white font-bold mb-5 md:max-w-md">How do We Make it Happen</h1>
-        <DefaultButton>Discover More</DefaultButton>
+        <DefaultButton to="/about">Discover More</DefaultButton>
       </div>
     </div>
 
@@ -137,7 +137,7 @@
             <DefaultForm v-model:modelValue="phoneNumber" label="Phone Number" type='text' placeholder="081xxxxxxxxx"/>
             <DefaultForm v-model:modelValue="messages" label="Messages" type='text' placeholder="Your messages"/>
           </form>
-          <DefaultButton px='px-8'>Submit</DefaultButton>
+          <DefaultButton to="/about" px='px-8'>Submit</DefaultButton>
         </div>
 
         <!-- Newsletter -->
@@ -147,10 +147,12 @@
           <form class="w-80 mt-5" method="post">
             <DefaultForm v-model:modelValue="emailNewsLetter" label="Email" type='email' placeholder="example@gmail.com"/>
           </form>
-          <DefaultButton px='px-8'>Subscribe</DefaultButton>
+          <DefaultButton to="/about" px='px-8'>Subscribe</DefaultButton>
         </div>
       </div>
     </div>
+
+    <!-- CALL FOOTER -->
     <Footer/>
   </div>
 </template>
