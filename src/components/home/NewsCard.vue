@@ -25,7 +25,7 @@
 
       <!-- TITLE -->
       <h1 class="text-blue-200 text-lg leading-6 line-clamp-3 font-bold">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+        {{ title }}
       </h1>
     </div>
   </div>

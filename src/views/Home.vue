@@ -109,11 +109,11 @@
           :dragging-distance="70"
           :breakpoints="breakpoints"
         >
-          <vueper-slide v-for="(asset, i) in newsAssets" :key="i">
+          <vueper-slide v-for="(asset) in articleList" :key="asset._id">
             <template #content>
               <NewsCard 
-                :src="asset.src"
-                :createdAt="asset.createdAt"
+                src="https://picsum.photos/600/400.jpg"
+                :createdAt="formatDate(asset.createdAt)"
                 :author="asset.author"
                 :views="asset.views"
                 :title="asset.title"
@@ -158,6 +158,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import moment from 'moment'
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
 import Navbar from '@/components/Navbar'
@@ -219,6 +221,7 @@ export default {
           content: 'Menjual berbagai sayur dan lauk pilihan dengan harga terjangkau dan produk berkualitas'
         }
       ],
+      articleList: [],
       newsAssets: [
         {
           src: 'https://picsum.photos/600/400.jpg',
@@ -256,6 +259,16 @@ export default {
       messages: '',
       emailNewsLetter: ''
     }
+  },
+  methods: {
+    formatDate(value) {
+      moment.locale('id')
+      return moment(String(value)).format('DD MMMM YYYY')
+    }
+  },
+  async mounted() {
+    const response = await axios.get('http://localhost:3000/article');
+    this.articleList = response.data;
   }
 }
 </script>
