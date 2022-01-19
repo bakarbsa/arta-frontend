@@ -130,24 +130,58 @@
         <!-- Support -->
         <div class="flex flex-col mb-14 md:mb-0">
           <Header title="Support Us" subtitle="HELP US TO IMPORVE QUALITY"/>
+          <div v-if="errors.feedbackError">
+            <div class="mt-3 bg-error px-3 h-12 rounded w-full flex flex-row justify-between items-center">
+              <p class="text-white font-medium">Please fill out all the forms</p>
+              <XIcon @click="this.errors.feedbackError = undefined" class="w-6 text-white cursor-pointer"></XIcon>
+            </div>
+          </div>
+          <div v-if="errors.feedbackError == false">
+            <div class="mt-3 bg-green px-3 h-12 rounded w-full flex flex-row justify-between items-center">
+              <p class="text-white font-medium">Email submitted successfully!</p>
+              <XIcon @click="this.errors.feedbackError = undefined" class="w-6 text-white cursor-pointer"></XIcon>
+            </div>
+          </div>
           <!-- Form Content -->
           <form class="w-80 mt-5" method="post">
-            <DefaultForm v-model:modelValue="fullName" label="Full Name" type='text' placeholder="Abu Bakar Bsa"/>
-            <DefaultForm v-model:modelValue="emailSupport" label="Email" type='email' placeholder="example@gmail.com"/>
-            <DefaultForm v-model:modelValue="phoneNumber" label="Phone Number" type='text' placeholder="081xxxxxxxxx"/>
-            <DefaultForm v-model:modelValue="messages" label="Messages" type='text' placeholder="Your messages"/>
+            <DefaultForm v-model:modelValue="feedbackForm.fullName" label="Full Name" type='text' placeholder="Abu Bakar Bsa"/>
+            <DefaultForm v-model:modelValue="feedbackForm.email" label="Email" type='email' placeholder="example@gmail.com"/>
+            <DefaultForm v-model:modelValue="feedbackForm.phoneNumber" label="Phone Number" type='text' placeholder="081xxxxxxxxx"/>
+            <DefaultForm v-model:modelValue="feedbackForm.messages" label="Messages" type='text' placeholder="Your messages"/>
           </form>
-          <DefaultButton to="/about" px='px-8'>Submit</DefaultButton>
+          <button 
+            @click.prevent="submitFeedbackForm"
+            class="rounded-sm w-min py-1.5 px-8 text-sm bg-green text-white transition duration-200 ease-in hover:bg-white hover:text-green"
+          >
+            Submit
+          </button>
         </div>
 
         <!-- Newsletter -->
         <div class="flex flex-col">
           <Header title="Newsletter" subtitle="GET THE LATEST NEWS FROM US"/>
+          <div v-if="errors.newsletterError">
+            <div class="mt-3 bg-error px-3 h-12 rounded w-full flex flex-row justify-between items-center">
+              <p class="text-white font-medium">Please fill out all the forms</p>
+              <XIcon @click="this.errors.newsletterError = undefined" class="w-6 text-white cursor-pointer"></XIcon>
+            </div>
+          </div>
+          <div v-if="errors.newsletterError == false">
+            <div class="mt-3 bg-green px-3 h-12 rounded w-full flex flex-row justify-between items-center">
+              <p class="text-white font-medium">Email submitted successfully!</p>
+              <XIcon @click="this.errors.newsletterError = undefined" class="w-6 text-white cursor-pointer"></XIcon>
+            </div>
+          </div>
           <!-- Form Content -->
           <form class="w-80 mt-5" method="post">
-            <DefaultForm v-model:modelValue="emailNewsLetter" label="Email" type='email' placeholder="example@gmail.com"/>
+            <DefaultForm v-model:modelValue="newsletterForm.email" label="Email" type='email' placeholder="example@gmail.com"/>
           </form>
-          <DefaultButton to="/about" px='px-8'>Subscribe</DefaultButton>
+          <button 
+            @click.prevent="submitNewsletterForm"
+            class="rounded-sm w-min py-1.5 px-8 text-sm bg-green text-white transition duration-200 ease-in hover:bg-white hover:text-green"
+          >
+            Subscribe
+          </button>
         </div>
       </div>
     </div>
@@ -162,6 +196,9 @@ import axios from 'axios'
 import moment from 'moment'
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
+import useVuelidate from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
+import { XIcon } from '@heroicons/vue/outline'
 import Navbar from '@/components/Navbar'
 import DefaultButton from '@/components/DefaultButton'
 import Header from '@/components/Header'
@@ -176,6 +213,7 @@ export default {
   components: { 
     VueperSlides, 
     VueperSlide,
+    XIcon,
     Navbar, 
     DefaultButton, 
     Header, 
@@ -184,6 +222,9 @@ export default {
     NewsCard,
     DefaultForm,
     Footer 
+  },
+  setup() {
+    return { v$: useVuelidate() }
   },
   data() {
     return {
@@ -221,54 +262,78 @@ export default {
           content: 'Menjual berbagai sayur dan lauk pilihan dengan harga terjangkau dan produk berkualitas'
         }
       ],
+      // Store Article List
       articleList: [],
-      newsAssets: [
-        {
-          src: 'https://picsum.photos/600/400.jpg',
-          title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus',
-          createdAt: '30 Agustus 2021',
-          author: 'Rizal Iskan',
-          views: 1403
-        },
-        {
-          src: 'https://picsum.photos/600/400.jpg',
-          title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus',
-          createdAt: '30 Agustus 2021',
-          author: 'Rizal Iskan',
-          views: 1403
-        },
-        {
-          src: 'https://picsum.photos/600/400.jpg',
-          title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus',
-          createdAt: '30 Agustus 2021',
-          author: 'Rizal Iskan',
-          views: 1403
-        },
-        {
-          src: 'https://picsum.photos/600/400.jpg',
-          title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus',
-          createdAt: '30 Agustus 2021',
-          author: 'Rizal Iskan',
-          views: 1403
-        },
-      ],
       // Form Model
-      fullName: '',
-      emailSupport: '',
-      phoneNumber: '',
-      messages: '',
-      emailNewsLetter: ''
+      errors: {
+        feedbackError: undefined,
+        newsletterError: undefined
+      },
+      feedbackForm: {
+        fullName: '',
+        email: '',
+        phoneNumber: '',
+        messages: '',
+      },
+      newsletterForm: {
+        email: ''
+      }
+    }
+  },
+  validations() {
+    return {
+      feedbackForm: {
+        fullName: { required },
+        email: { required },
+        phoneNumber: { required },
+        messages: { required },
+      },
+      newsletterForm: {
+        email: { required }
+      }
     }
   },
   methods: {
     formatDate(value) {
       moment.locale('id')
       return moment(String(value)).format('DD MMMM YYYY')
+    },
+    submitFeedbackForm() {
+      this.v$.feedbackForm.$touch();
+      if(!this.v$.feedbackForm.$invalid) {
+        axios.post('http://localhost:3000/feedback', this.feedbackForm)
+        .then(() => {
+          console.log('Post feedback successfully!');
+          this.errors.feedbackError = false;
+        })
+        .catch((err) => {
+          console.log(err);
+          alert('Unknown Error');
+        });
+      } else {
+        this.errors.feedbackError = true;
+      }
+    },
+    submitNewsletterForm() {
+      this.v$.newsletterForm.$touch();
+      if(!this.v$.newsletterForm.$invalid) {
+        axios.post('http://localhost:3000/newsletter', this.newsletterForm)
+        .then(() => {
+          console.log('Post newsletter email successfully!');
+          this.errors.newsletterError = false;
+        })
+        .catch((err) => {
+          console.log(err);
+          alert('Unknown Error');
+        });
+      } else {
+        this.errors.newsletterError = true;
+      }
     }
   },
   async mounted() {
-    const response = await axios.get('http://localhost:3000/article');
-    this.articleList = response.data;
+    const resArticleList = await axios.get('http://localhost:3000/article');
+    this.articleList = resArticleList.data;
   }
 }
 </script>

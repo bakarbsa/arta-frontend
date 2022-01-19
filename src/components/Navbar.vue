@@ -35,10 +35,10 @@
             :class="[active == 'products' ? activeText() : '', changeText()]">
             Products
           </router-link>
-          <router-link to="/news" 
+          <router-link to="/articles" 
             class="navbar-content navbar-content-hover" 
-            :class="[active == 'news' ? activeText() : '', changeText()]">
-            News
+            :class="[active == 'articles' ? activeText() : '', changeText()]">
+            Articles
           </router-link>
           <router-link to="/contact" 
             class="navbar-content navbar-content-hover" 

@@ -18,12 +18,12 @@ const routes = [
         component: () => import('../views/products/Artamart.vue')
     },
     {
-        path: '/article',
-        name: 'Article',
+        path: '/articles',
+        name: 'Articles',
         component: () => import('../views/article/Article.vue')
     },
     {
-        path: '/article/:articleId',
+        path: '/articles/articledetails',
         name: 'Article Details',
         component: () => import('../views/article/ArticleDetails')
     },
