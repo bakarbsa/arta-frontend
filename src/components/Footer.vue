@@ -70,6 +70,7 @@
 
 <script>
 import { PhoneIcon, MailIcon } from '@heroicons/vue/solid'
+
 export default {
   name: 'Footer',
   components: { PhoneIcon, MailIcon },
