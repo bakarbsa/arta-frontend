@@ -4,26 +4,23 @@ module.exports = {
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      black: colors.black,
-      white: colors.white,
-      green: '#01BF71',
-      dark: '#242424',
-      error: '#FF0000',
-      blue : {
-        100: '#337CA0',
-        200: '#1E465A',
-        300: '#195979'
+    extend: {
+        colors: {
+          artaGreen: '#01BF71',
+          artaDark: '#242424',
+          artaError: '#FF0000',
+          artaBlue : {
+            100: '#337CA0',
+            200: '#1E465A',
+            300: '#195979'
+          },
+          artaGray: '#7B7B7B'
+        },
+        boxShadow: {
+          'bottom': '0 6px 5px -2px  #CDCDCD'
+        }
       },
-      gray: '#7B7B7B'
     },
-    boxShadow: {
-      'bottom': '0 6px 5px -2px  #CDCDCD'
-    }
-  },
   variants: {
     extend: {},
   },

@@ -23,7 +23,7 @@ const routes = [
         component: () => import('../views/article/Article.vue')
     },
     {
-        path: '/articles/articledetails',
+        path: '/articles/:articleId',
         name: 'Article Details',
         component: () => import('../views/article/ArticleDetails')
     },
@@ -36,6 +36,9 @@ const routes = [
 
 const router = createRouter({
 	history: createWebHistory(),
+    scrollBehavior() {
+        return { top: 0 }
+    } ,
 	routes
 })
 

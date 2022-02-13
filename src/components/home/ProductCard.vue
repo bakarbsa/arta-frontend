@@ -20,7 +20,7 @@
       </div>
       <!-- Description -->
       <div class="px-7 -mt-3">
-        <p class="text-center text-gray text-xs">Franchise yang menjual berbagai sayur dan lauk pilihan dengan harga terjangkau dan stabil, serta produk berkualitas</p>
+        <p class="text-center text-artaGray text-xs">Franchise yang menjual berbagai sayur dan lauk pilihan dengan harga terjangkau dan stabil, serta produk berkualitas</p>
       </div>
       <DefaultButton to="/artamart">Learn More</DefaultButton>
     </div>

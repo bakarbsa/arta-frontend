@@ -7,7 +7,7 @@
           <div class="h-full w-full">
             <img :src="src" alt="Quality Image">
           </div>
-          <div class="absolute flex items-center justify-center h-14 w-3/4 px-5 py-3 text-xs text-blue-200 font-medium bg-white rounded-t-md bottom-0 right-7">
+          <div class="absolute flex items-center justify-center h-14 w-3/4 px-5 py-3 text-xs text-artaBlue-200 font-medium bg-white rounded-t-md bottom-0 right-7">
             <slot/>
           </div>
         </div>
@@ -15,13 +15,13 @@
       <!-- BACK CARD -->
       <div class="flip-back absolute h-full w-full">
         <!-- If content is null -->
-        <div v-if="content == ''" class="flex flex-col justify-center items-center h-full w-full px-5 py-2 bg-green">
-          <h1 class="text-blue-200 text-3xl mb-5">Want to Know More?</h1>
+        <div v-if="content == ''" class="flex flex-col justify-center items-center h-full w-full px-5 py-2 bg-artaGreen">
+          <h1 class="text-artaBlue-200 text-3xl mb-5">Want to Know More?</h1>
           <DefaultButton to="/about" type="blue">About Us</DefaultButton>
         </div>
         <!-- If content not null -->
-        <div v-else class="flex flex-col justify-center items-center h-full w-full px-5 py-2 bg-green">
-          <p class="text-blue-200 font-sm font-light text-center">{{ content }}</p>
+        <div v-else class="flex flex-col justify-center items-center h-full w-full px-5 py-2 bg-artaGreen">
+          <p class="text-artaBlue-200 font-sm font-light text-center">{{ content }}</p>
         </div>
       </div>
     </div>

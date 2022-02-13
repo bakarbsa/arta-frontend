@@ -26,8 +26,8 @@ export default {
   methods: {
     // Change button color when props 'type == blue'
     changeColor() {
-      if(this.type == 'blue') return 'bg-blue-100 text-white transition duration-200 ease-in hover:bg-white hover:text-blue-100'
-      else return 'bg-green text-white transition duration-200 ease-in hover:bg-white hover:text-green'
+      if(this.type == 'blue') return 'bg-artaBlue-100 text-white transition duration-200 ease-in hover:bg-white hover:text-artaBlue-100'
+      else return 'bg-artaGreen text-white transition duration-200 ease-in hover:bg-white hover:text-artaGreen'
     }
   }
 }

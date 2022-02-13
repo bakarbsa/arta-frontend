@@ -6,7 +6,7 @@
     <!-- HERO SECTION -->
     <div class="h-screen flex justify-items-center items-center bg-black">
       <!-- Background Image -->
-      <img class="h-full w-full absolute object-cover opacity-70" src="../assets/images/bg-hero.jpg" alt="Background Hero">
+      <img class="h-screen w-full absolute object-cover opacity-70" src="../assets/images/bg-hero.jpg" alt="Background Hero">
       
       <!-- Content -->
       <div class="mx-auto text-center relative text-white">
@@ -23,14 +23,14 @@
           <!-- Card -->
           <div class="relative flex flex-col items-center md:items-end w-96">
             <!-- Card Image -->
-            <div class="card-about h-96 w-80 text-green rounded-md overflow-hidden">
+            <div class="card-about h-96 w-80 text-artaGreen bg-artaGreen rounded-md overflow-hidden">
               <img 
                 class="bg-about" 
                 src="../assets/images/bg-about.jpg" 
                 alt="About Arta">
             </div>
             <!-- Tag Line -->
-            <div class="absolute -bottom-9 md:right-10 w-60 bg-blue-100 py-4 px-6 rounded-2xl">
+            <div class="absolute -bottom-9 md:right-10 w-60 bg-artaBlue-100 py-4 px-6 rounded-2xl">
                <p class="text-white text-2xl text-left stick-no-bills">Grow Together</p>
                 <p class="text-white text-2xl text-right stick-no-bills font-bold">Respect Each Other</p>
             </div>
@@ -39,9 +39,9 @@
         <!-- Grid 2 -->
         <div class="flex flex-col w-96 justify-center px-4 md:px-0">
           <Header title="Kami hadir dengan segala inovasi" subtitle="our introduction"/>
-          <p class="text-blue-300 text-sm my-4">Mewujudkan pertanian Indonesia yang lebih maju</p>
-          <p class="text-gray text-sm">Startup agribisnis yang fokus terhadap dunia pertanian dan memiliki dedikasi tinggi untuk berkontribusi dalam pertanian Indonesia.</p>
-          <ul class="text-blue-300 mt-4">
+          <p class="text-artaBlue-300 text-sm my-4">Mewujudkan pertanian Indonesia yang lebih maju</p>
+          <p class="text-artaGray text-sm">Startup agribisnis yang fokus terhadap dunia pertanian dan memiliki dedikasi tinggi untuk berkontribusi dalam pertanian Indonesia.</p>
+          <ul class="text-artaBlue-300 mt-4">
             <li class="bullet pl-7 mb-2">Menjadi perusahaan agribisnis berbasis teknologi.</li>
             <li class="bullet pl-7 my-2">Menjaga kredibilitas dan kepuasan konsumen.</li>
             <li class="bullet pl-7 my-2">Mewujudkan lingkup kerja yang efisien dan flexibel</li>
@@ -84,9 +84,9 @@
     </div>
 
     <!-- Banner 2 -->
-    <div class="relative bg-green h-24 flex justify-center">
+    <div class="relative bg-artaGreen h-24 flex justify-center">
       <img class="h-full opacity-60 w-full object-cover" src="../assets/images/home-banner2.jpg" alt="Arta Banner">
-      <div class="absolute h-full w-full bg-gradient-to-b from-green to-transparent  flex justify-center items-center">
+      <div class="absolute h-full w-full bg-gradient-to-b from-artaGreen to-transparent  flex justify-center items-center">
         <div class="flex flex-row items-center mx-10">
           <!-- Logo Arta -->
           <img class="w-10 mr-5" src="../assets/images/logo-white.png" alt="Arta Logo">
@@ -99,90 +99,23 @@
     <!-- NEWS & ARTICLE SECTION -->
     <div class="my-16 flex flex-col justify-center items-center">
       <Header class="center" title="News & Article" subtitle="WHAT’S GOING ON?"/>
-      <div class="mt-5 w-5/6">
-        <vueper-slides
-          class="no-shadow"
-          fixed-height="18.3rem"
-          :visible-slides="3"
-          slide-multiple
-          :gap="3"
-          :dragging-distance="70"
-          :breakpoints="breakpoints"
-        >
-          <vueper-slide v-for="(asset) in articleList" :key="asset._id">
-            <template #content>
-              <NewsCard 
-                src="https://picsum.photos/600/400.jpg"
-                :createdAt="formatDate(asset.createdAt)"
-                :author="asset.author"
-                :views="asset.views"
-                :title="asset.title"
-              />
-            </template>
-          </vueper-slide>
-        </vueper-slides>
-      </div>
+      <ArticleCarousel/>
     </div>
 
     <!-- SUPPORT & NEWSLETTER -->
     <div class="my-16 flex justify-center items-center">
       <div class="grid grid-cols-1 md:grid-cols-2 md:gap-20">
+
         <!-- Support -->
-        <div class="flex flex-col mb-14 md:mb-0">
-          <Header title="Support Us" subtitle="HELP US TO IMPORVE QUALITY"/>
-          <div v-if="errors.feedbackError">
-            <div class="mt-3 bg-error px-3 h-12 rounded w-full flex flex-row justify-between items-center">
-              <p class="text-white font-medium">Please fill out all the forms</p>
-              <XIcon @click="this.errors.feedbackError = undefined" class="w-6 text-white cursor-pointer"></XIcon>
-            </div>
-          </div>
-          <div v-if="errors.feedbackError == false">
-            <div class="mt-3 bg-green px-3 h-12 rounded w-full flex flex-row justify-between items-center">
-              <p class="text-white font-medium">Email submitted successfully!</p>
-              <XIcon @click="this.errors.feedbackError = undefined" class="w-6 text-white cursor-pointer"></XIcon>
-            </div>
-          </div>
-          <!-- Form Content -->
-          <form class="w-80 mt-5" method="post">
-            <DefaultForm v-model:modelValue="feedbackForm.fullName" label="Full Name" type='text' placeholder="Abu Bakar Bsa"/>
-            <DefaultForm v-model:modelValue="feedbackForm.email" label="Email" type='email' placeholder="example@gmail.com"/>
-            <DefaultForm v-model:modelValue="feedbackForm.phoneNumber" label="Phone Number" type='text' placeholder="081xxxxxxxxx"/>
-            <DefaultForm v-model:modelValue="feedbackForm.messages" label="Messages" type='text' placeholder="Your messages"/>
-          </form>
-          <button 
-            @click.prevent="submitFeedbackForm"
-            class="rounded-sm w-min py-1.5 px-8 text-sm bg-green text-white transition duration-200 ease-in hover:bg-white hover:text-green"
-          >
-            Submit
-          </button>
+         <div class="flex flex-col mb-14 md:mb-0"> 
+          <FeedbackForm/>
         </div>
 
         <!-- Newsletter -->
         <div class="flex flex-col">
-          <Header title="Newsletter" subtitle="GET THE LATEST NEWS FROM US"/>
-          <div v-if="errors.newsletterError">
-            <div class="mt-3 bg-error px-3 h-12 rounded w-full flex flex-row justify-between items-center">
-              <p class="text-white font-medium">Please fill out all the forms</p>
-              <XIcon @click="this.errors.newsletterError = undefined" class="w-6 text-white cursor-pointer"></XIcon>
-            </div>
-          </div>
-          <div v-if="errors.newsletterError == false">
-            <div class="mt-3 bg-green px-3 h-12 rounded w-full flex flex-row justify-between items-center">
-              <p class="text-white font-medium">Email submitted successfully!</p>
-              <XIcon @click="this.errors.newsletterError = undefined" class="w-6 text-white cursor-pointer"></XIcon>
-            </div>
-          </div>
-          <!-- Form Content -->
-          <form class="w-80 mt-5" method="post">
-            <DefaultForm v-model:modelValue="newsletterForm.email" label="Email" type='email' placeholder="example@gmail.com"/>
-          </form>
-          <button 
-            @click.prevent="submitNewsletterForm"
-            class="rounded-sm w-min py-1.5 px-8 text-sm bg-green text-white transition duration-200 ease-in hover:bg-white hover:text-green"
-          >
-            Subscribe
-          </button>
+          <NewsletterForm/>
         </div>
+
       </div>
     </div>
 
@@ -192,52 +125,31 @@
 </template>
 
 <script>
-import axios from 'axios'
-import moment from 'moment'
-import { VueperSlides, VueperSlide } from 'vueperslides'
-import 'vueperslides/dist/vueperslides.css'
-import useVuelidate from '@vuelidate/core'
-import { required } from '@vuelidate/validators'
-import { XIcon } from '@heroicons/vue/outline'
 import Navbar from '@/components/Navbar'
 import DefaultButton from '@/components/DefaultButton'
 import Header from '@/components/Header'
 import AboutCard from '@/components/home/AboutCard'
 import ProductCard from '@/components/home/ProductCard'
-import NewsCard from '@/components/home/NewsCard'
-import DefaultForm from '@/components/DefaultForm'
+import ArticleCarousel from '@/components/ArticleCarousel'
+import FeedbackForm from '@/components/FeedbackForm'
+import NewsletterForm from '@/components/NewsletterForm'
 import Footer from '@/components/Footer'
 
 export default {
   name: 'Home',
-  components: { 
-    VueperSlides, 
-    VueperSlide,
-    XIcon,
+  components: {
     Navbar, 
     DefaultButton, 
     Header, 
     AboutCard, 
     ProductCard,
-    NewsCard,
-    DefaultForm,
+    ArticleCarousel,
+    FeedbackForm,
+    NewsletterForm,
     Footer 
-  },
-  setup() {
-    return { v$: useVuelidate() }
   },
   data() {
     return {
-      // Breakpoints for Vueper Slides
-      breakpoints: {
-        950: {
-          visibleSlides: 2
-        },
-        600: {
-          visibleSlides: 1,
-          bulletsOutside: true
-        }
-      },
       // Array for quality card images
       qualityAssets: [
         {
@@ -262,78 +174,7 @@ export default {
           content: 'Menjual berbagai sayur dan lauk pilihan dengan harga terjangkau dan produk berkualitas'
         }
       ],
-      // Store Article List
-      articleList: [],
-      // Form Model
-      errors: {
-        feedbackError: undefined,
-        newsletterError: undefined
-      },
-      feedbackForm: {
-        fullName: '',
-        email: '',
-        phoneNumber: '',
-        messages: '',
-      },
-      newsletterForm: {
-        email: ''
-      }
     }
-  },
-  validations() {
-    return {
-      feedbackForm: {
-        fullName: { required },
-        email: { required },
-        phoneNumber: { required },
-        messages: { required },
-      },
-      newsletterForm: {
-        email: { required }
-      }
-    }
-  },
-  methods: {
-    formatDate(value) {
-      moment.locale('id')
-      return moment(String(value)).format('DD MMMM YYYY')
-    },
-    submitFeedbackForm() {
-      this.v$.feedbackForm.$touch();
-      if(!this.v$.feedbackForm.$invalid) {
-        axios.post('http://localhost:3000/feedback', this.feedbackForm)
-        .then(() => {
-          console.log('Post feedback successfully!');
-          this.errors.feedbackError = false;
-        })
-        .catch((err) => {
-          console.log(err);
-          alert('Unknown Error');
-        });
-      } else {
-        this.errors.feedbackError = true;
-      }
-    },
-    submitNewsletterForm() {
-      this.v$.newsletterForm.$touch();
-      if(!this.v$.newsletterForm.$invalid) {
-        axios.post('http://localhost:3000/newsletter', this.newsletterForm)
-        .then(() => {
-          console.log('Post newsletter email successfully!');
-          this.errors.newsletterError = false;
-        })
-        .catch((err) => {
-          console.log(err);
-          alert('Unknown Error');
-        });
-      } else {
-        this.errors.newsletterError = true;
-      }
-    }
-  },
-  async mounted() {
-    const resArticleList = await axios.get('http://localhost:3000/article');
-    this.articleList = resArticleList.data;
   }
 }
 </script>

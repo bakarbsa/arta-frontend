@@ -10,14 +10,14 @@
           <!-- Card -->
           <div class="relative flex flex-col items-center md:items-end w-96">
             <!-- Card Image -->
-            <div class="card-about h-96 w-80 text-green rounded-md overflow-hidden">
+            <div class="card-about h-96 w-80 text-artaGreen rounded-md overflow-hidden">
               <img 
                 class="bg-about" 
                 src="../assets/images/bg-about.jpg" 
                 alt="About Arta">
             </div>
             <!-- Tag Line -->
-            <div class="absolute -bottom-9 md:right-10 w-60 bg-blue-100 py-4 px-6 rounded-2xl">
+            <div class="absolute -bottom-9 md:right-10 w-60 bg-artaBlue-100 py-4 px-6 rounded-2xl">
                <p class="text-white text-2xl text-left stick-no-bills">Grow Together</p>
                 <p class="text-white text-2xl text-right stick-no-bills font-bold">Respect Each Other</p>
             </div>
@@ -26,9 +26,9 @@
         <!-- Grid 2 -->
         <div class="flex flex-col w-96 justify-center px-4 md:px-0">
           <Header title="Kami hadir dengan segala inovasi" subtitle="our introduction"/>
-          <p class="text-blue-300 text-sm my-4">Mewujudkan pertanian Indonesia yang lebih maju</p>
-          <p class="text-gray text-sm">Startup agribisnis yang fokus terhadap dunia pertanian dan memiliki dedikasi tinggi untuk berkontribusi dalam pertanian Indonesia.</p>
-          <ul class="text-blue-300 mt-4">
+          <p class="text-artaBlue-300 text-sm my-4">Mewujudkan pertanian Indonesia yang lebih maju</p>
+          <p class="text-artaGray text-sm">Startup agribisnis yang fokus terhadap dunia pertanian dan memiliki dedikasi tinggi untuk berkontribusi dalam pertanian Indonesia.</p>
+          <ul class="text-artaBlue-300 mt-4">
             <li class="bullet pl-7 mb-2">Menjadi perusahaan agribisnis berbasis teknologi.</li>
             <li class="bullet pl-7 my-2">Menjaga kredibilitas dan kepuasan konsumen.</li>
             <li class="bullet pl-7 my-2">Mewujudkan lingkup kerja yang efisien dan flexibel</li>
